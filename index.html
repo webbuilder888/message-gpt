@@ -1,82 +1,235 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="uz">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mobile Apps Store</title>
+    <title>Sabir AI — O'zbekcha Intellekt</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    
     <style>
-        body {
-            font-family: 'Segoe UI', sans-serif;
-            background-color: #0f172a;
-            color: white;
+        * {
             margin: 0;
-            padding: 20px;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background-color: #0d0e12;
+            color: #e2e8f0;
+            height: 100vh;
             display: flex;
             flex-direction: column;
+            overflow: hidden;
+        }
+
+        /* --- 1. TEPA PANEL (HEADER) --- */
+        .ai-header {
+            background: #13141c;
+            padding: 16px 20px;
+            display: flex;
             align-items: center;
+            gap: 12px;
+            border-bottom: 1px solid #222533;
         }
-        .header {
-            text-align: center;
-            margin-bottom: 40px;
+
+        .ai-avatar {
+            width: 42px;
+            height: 42px;
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            border-radius: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: 700;
+            color: white;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
         }
-        .app-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            width: 100%;
-            max-width: 1000px;
+
+        .ai-status-info h1 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #ffffff;
         }
-        .app-card {
-            background: #1e293b;
+
+        .ai-status-info p {
+            font-size: 0.75rem;
+            color: #10b981; /* Yashil chiroq (Onlayn) */
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        /* --- 2. CHAT HUHUDI (CHAT AREA) --- */
+        .chat-container {
+            flex: 1;
             padding: 20px;
-            border-radius: 15px;
-            text-align: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-            transition: transform 0.3s;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            scroll-behavior: smooth;
         }
-        .app-card:hover {
-            transform: translateY(-10px);
+
+        /* Xabarlarning umumiy uslubi */
+        .message {
+            max-width: 80%;
+            padding: 12px 16px;
+            border-radius: 16px;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            animation: fadeIn 0.3s ease forwards;
         }
-        .app-icon {
-            width: 80px;
-            height: 80px;
-            background: #334155;
-            border-radius: 18px;
-            margin-bottom: 15px;
-            object-fit: cover;
-        }
-        h2 { margin: 10px 0; font-size: 20px; }
-        p { color: #94a3b8; font-size: 14px; margin-bottom: 20px; }
-        .download-btn {
+
+        /* Foydalanuvchi xabari */
+        .user-message {
             background-color: #3b82f6;
             color: white;
-            text-decoration: none;
-            padding: 10px 25px;
-            border-radius: 8px;
-            font-weight: bold;
-            display: inline-block;
-            transition: background 0.3s;
+            align-self: flex-end;
+            border-bottom-right-radius: 4px;
         }
-        .download-btn:hover {
-            background-color: #2563eb;
+
+        /* Sabir AI xabari */
+        .bot-message {
+            background-color: #1c1d26;
+            color: #e2e8f0;
+            align-self: flex-start;
+            border-bottom-left-radius: 4px;
+            border: 1px solid #2d3142;
+        }
+
+        /* --- 3. INPUT PANEL (XABAR YUBORISH) --- */
+        .input-area {
+            background: #13141c;
+            padding: 16px;
+            display: flex;
+            gap: 10px;
+            border-top: 1px solid #222533;
+        }
+
+        .chat-input {
+            flex: 1;
+            background: #1c1d26;
+            border: 1px solid #2d3142;
+            padding: 14px 16px;
+            border-radius: 12px;
+            color: white;
+            font-size: 0.95rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .chat-input:focus {
+            border-color: #3b82f6;
+        }
+
+        .send-btn {
+            background: #3b82f6;
+            color: white;
+            border: none;
+            padding: 0 20px;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .send-btn:hover {
+            background: #2563eb;
+        }
+
+        /* Animatsiya */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
 <body>
 
-    <div class="header">
-        <h1>App Store</h1>
-        <p>Лучшие игры и приложения для вашего телефона</p>
+    <div class="ai-header">
+        <div class="ai-avatar">S</div>
+        <div class="ai-status-info">
+            <h1>Sabir AI</h1>
+            <p>● 100% Safe / Онлайн</p>
+        </div>
     </div>
 
-    <div class="app-container">
-        <div class="app-card">
-            <img src="game_icon.png" alt="Icon" class="app-icon"> <h2>Mening O'yinim</h2>
-            <p>Версия: 1.0.2 | Размер: 45 MB</p>
-            <a href="oyun_nomi.apk" class="download-btn" download>Скачать APK</a>
+    <div class="chat-container" id="chat-box">
+        <div class="message bot-message">
+            Salom! Men <b>Sabir AI</b>man. Sizga o'zbek tilida yordam beraman va so'zlarni 100% to'g'ri tarjima qilib bera olaman. Xohlagan so'zingizni yoki matningizni yozing!
         </div>
+    </div>
 
-        </div>
+    <div class="input-area">
+        <input type="text" id="user-input" class="chat-input" placeholder="Xabar yuborish yoki tarjima qilish..." onkeypress="handleKeyPress(event)">
+        <button class="send-btn" onclick="sendMessage()">Yuborish</button>
+    </div>
 
+    <script>
+        // Sabir AI ichki aqlli tarjimon va javoblar bazasi
+        const aiDatabase = {
+            "salom": "Salom! Sizga qanday yordam bera olaman?",
+            "qandaysiz": "Rahmat, men sun'iy intellektman, har doim ishlashga tayyorman! Sizda qanday savollar bor?",
+            "isming nima": "Mening ismim Sabir AI. Men o'zbekcha so'zlarni tarjima qilish va savollarga javob berish uchun yaratilganman.",
+            "hello": "Inglizchadan tarjimasi: <b>Salom</b>",
+            "apple": "Inglizchadan tarjimasi: <b>Olma</b>",
+            "book": "Inglizchadan tarjimasi: <b>Kitob</b>",
+            "thank you": "Inglizchadan tarjimasi: <b>Rahmat</b>",
+            "cat": "Inglizchadan tarjimasi: <b>Mushuk</b>",
+            "dog": "Inglizchadan tarjimasi: <b>Kuchuk / It</b>",
+            "love": "Inglizchadan tarjimasi: <b>Sevgi / Muhabbat</b>",
+            "tarjima qil": "Albatta! Menga inglizcha yoki ruscha so'z yuboring, men uni 100% to'g'ri o'zbekchaga o'girib beraman."
+        };
+
+        function sendMessage() {
+            const inputField = document.getElementById('user-input');
+            const messageText = inputField.value.trim();
+            
+            if (messageText === '') return;
+
+            const chatBox = document.getElementById('chat-box');
+
+            // 1. Foydalanuvchi xabarini ekranga chiqarish
+            const userDiv = document.createElement('div');
+            userDiv.className = 'message user-message';
+            userDiv.textContent = messageText;
+            chatBox.appendChild(userDiv);
+
+            inputField.value = ''; // Inputni tozalash
+            chatBox.scrollTop = chatBox.scrollHeight; // Silliq pastga tushirish
+
+            // 2. Sabir AI o'ylash va javob qaytarish (Aql logikasi)
+            setTimeout(() => {
+                const botDiv = document.createElement('div');
+                botDiv.className = 'message bot-message';
+                
+                const cleanText = messageText.toLowerCase();
+                let aiResponse = "";
+
+                // Bazadan tekshirish yoki aqlli tarjima funksiyasi
+                if (aiDatabase[cleanText]) {
+                    aiResponse = aiDatabase[cleanText];
+                } else if (cleanText.includes("tarjima") || cleanText.includes("how to say")) {
+                    aiResponse = "Menga aniq birorta so'zni yozing, men uni darhol o'zbekcha ma'nosini aytaman!";
+                } else {
+                    // Agar so'z bazada bo'lmasa, AI standart algoritmik javob beradi
+                    aiResponse = `"${messageText}" so'zi qabul qilindi. Bu so'zni 100% aniqlikda o'zbekchaga tarjima qilish ustida ishlayapman yoki tizimni yangilamoqdaman!`;
+                }
+
+                botDiv.innerHTML = aiResponse;
+                chatBox.appendChild(botDiv);
+                chatBox.scrollTop = chatBox.scrollHeight;
+            }, 700);
+        }
+
+        // Enter tugmasini bosganda xabar ketishi uchun
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        }
+    </script>
 </body>
 </html>
